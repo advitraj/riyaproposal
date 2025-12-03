@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Riya | Special Message</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: "Poppins", sans-serif;
+            background: #fff0f6;
+            text-align: center;
+            overflow-x: hidden;
+        }
+
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #riyaName {
+            font-size: 4rem;
+            font-weight: bold;
+            color: #e60073;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        #riyaName:hover {
+            transform: scale(1.1);
+        }
+
+        /* Tap Here text */
+        #tapHere {
+            margin-top: 10px;
+            font-size: 1.2rem;
+            color: #ff3385;
+            animation: blink 1.5s infinite;
+        }
+
+        @keyframes blink {
+            0% { opacity: 0.2; }
+            50% { opacity: 1; }
+            100% { opacity: 0.2; }
+        }
+
+        #proposalMsg {
+            margin-top: 20px;
+            font-size: 1.8rem;
+            color: #d1005b;
+            opacity: 0;
+            transition: 1s;
+        }
+
+        #shayari {
+            margin-top: 30px;
+            font-size: 1.4rem;
+            max-width: 700px;
+            opacity: 0;
+            transition: 2s;
+            color: #333;
+        }
+
+        /* Falling flowers */
+        .flower {
+            position: fixed;
+            top: -10px;
+            font-size: 25px;
+            animation: fall linear forwards;
+        }
+
+        @keyframes fall {
+            0% { transform: translateY(-10px) rotate(0deg); }
+            100% { transform: translateY(110vh) rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="hero">
+        <div id="riyaName">Riya</div>
+
+        <!-- NEW TAP HERE TEXT -->
+        <div id="tapHere">👉 Tap Here 👈</div>
+
+        <div id="proposalMsg">💖 Riya, will you be the smile of my life? 💖</div>
+
+        <div id="shayari">
+            "Tere bina adhuri si lagti hai zindagi meri,<br>
+            Tu muskura de bas, phir kya kami meri…💗"<br><br>
+            "Ek teri yaad hi kaafi hai muskurane ko,<br>
+            Baaki duniya toh bas wajah dhoondti reh jaati hai…"
+        </div>
+    </div>
+
+    <script>
+        const riya = document.getElementById("riyaName");
+        const proposal = document.getElementById("proposalMsg");
+        const shayari = document.getElementById("shayari");
+        const tapHere = document.getElementById("tapHere");
+
+        let clicked = false;
+
+        riya.addEventListener("click", () => {
+            if (clicked) return;
+            clicked = true;
+
+            // Hide tap here text after click
+            tapHere.style.display = "none";
+
+            // Show messages
+            proposal.style.opacity = 1;
+            shayari.style.opacity = 1;
+
+            // Flower Sprinkle
+            for (let i = 0; i < 40; i++) {
+                let flower = document.createElement("div");
+                flower.classList.add("flower");
+                flower.innerHTML = "🌸";
+                flower.style.left = Math.random() * 100 + "vw";
+                flower.style.animationDuration = (2 + Math.random() * 3) + "s";
+                document.body.appendChild(flower);
+
+                setTimeout(() => {
+                    flower.remove();
+                }, 5000);
+            }
+        });
+    </script>
+</body>
+</html>
